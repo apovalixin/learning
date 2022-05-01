@@ -3,10 +3,12 @@
 
 using namespace std;
 
-void foo(int* pa, int* pb, int a, int b) {
-
-	(*pa) = b;
-	(*pb) = a;
+void Swap(int *pa, int *pb) {
+	
+	int temp = *pa;
+	
+	*pa = *pb;
+	*pb = temp;
 
 
 }
@@ -18,7 +20,7 @@ void main() {
 	cout << "a= " << a << endl;
 	cout << "b= " << b << endl;
 
-	foo(&a, &b, a, b);
+	Swap(&a, &b);
 
 	cout << "a= " << a << endl;
 	cout << "b= " << b << endl;
