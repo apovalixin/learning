@@ -3,27 +3,38 @@
 
 using namespace std;
 
-void Swap(int *a, int *b) {
-	
-	int temp = *a;
-	
-	*a = *b;
-	*b = temp;
+int foo1(int a){
 
+	a = 1;
 
+	return a;
 }
+
+void foo2(int &a) {
+
+	a = 2;
+}
+
+void foo3(int *a) {
+
+	*a = 3;
+}
+
 
 void main() {
 
-	int a = 5, b = 6;
+	int value = 5;
 
-	cout << "a= " << a << endl;
-	cout << "b= " << b << endl;
+	cout << "value before = " << value << endl << endl;
 
-	Swap(&a, &b);
+	cout << "foo1   " << endl;
+	cout << "value: " << foo1(value) << endl << endl;
 
-	cout << "a= " << a << endl;
-	cout << "b= " << b << endl;
+	cout << "foo2   " << endl;
+	foo2(value);
+	cout << "value: " << value << endl << endl;
 
-	cout << "";
+	cout << "foo3   " << endl;
+	foo3(&value);
+	cout << "value: " << value << endl << endl;
 }
