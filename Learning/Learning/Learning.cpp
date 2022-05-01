@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void Swap(int *pa, int *pb) {
+void Swap(int *a, int *b) {
 	
-	int temp = *pa;
+	int temp = *a;
 	
-	*pa = *pb;
-	*pb = temp;
+	*a = *b;
+	*b = temp;
 
 
 }
