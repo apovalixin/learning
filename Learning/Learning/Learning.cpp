@@ -1,21 +1,23 @@
 ﻿#include <iostream>
 #include <ctime>
+#include <string>
 
 using namespace std;
 
-void Swap(int &a,int &b) {
+template<typename T>
 
-	int temp = a;
+void Swap(T &a, T &b) {
+
+	T temp = a;
 
 	a = b;
 	b = temp;
 
 }
 
+void main(){
 
-void main() {
-
-	int a = 5, b = 6;
+	string a="rrr", b ="HHH";
 
 	cout << "a= " << a << endl;
 	cout << "b= " << b << endl << endl;
@@ -25,5 +27,4 @@ void main() {
 	cout << "a= " << a << endl;
 	cout << "b= " << b << endl << endl;
 
-	
 }
