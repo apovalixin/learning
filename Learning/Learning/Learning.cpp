@@ -1,30 +1,60 @@
 ﻿#include <iostream>
-#include <ctime>
-#include <string>
 
 using namespace std;
 
-template<typename T>
-
-void Swap(T &a, T &b) {
-
-	T temp = a;
-
-	a = b;
-	b = temp;
-
+void FillArr(int* const arr, const int size) {
+	
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = rand() % 10;
+	}
 }
 
-void main(){
+void ShowArr(int* const arr, const int size) {
 
-	string a="rrr", b ="HHH";
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << "\t";
+	}
+}
 
-	cout << "a= " << a << endl;
-	cout << "b= " << b << endl << endl;
 
-	Swap(a, b);
+int main(){
 
-	cout << "a= " << a << endl;
-	cout << "b= " << b << endl << endl;
+	setlocale(LC_ALL, "ru");
 
+	int size = 10;
+	int *arr1=new int[size];
+	int *arr2 = new int[size];
+
+	FillArr(arr1,size);
+	FillArr(arr2, size);
+
+	cout << "1 array: ";
+	ShowArr(arr1, size);
+	cout << endl;
+	cout << "2 array: ";
+	ShowArr(arr2,size);
+
+	cout << endl;
+
+	cout << "/////////////////////////////////////" << endl;
+
+	arr1 = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		arr1[i] = arr2[i];
+	}
+
+	cout << "1 array: ";
+	ShowArr(arr1, size);
+	cout << endl;
+	cout << "2 array: ";
+	ShowArr(arr2, size);
+
+
+	delete[] arr1;
+	delete[] arr2;
+
+	return 0;
 }
