@@ -16,45 +16,48 @@ void ShowArr(int* const arr, const int size) {
 	{
 		cout << arr[i] << "\t";
 	}
+	cout << endl;
 }
 
+void push_back(int *& arr, int &size, const int value) {
+
+	int *newArr = new int[size + 1];
+	
+	for (int i = 0; i < size; i++)
+	{
+		newArr[i] = arr[i];
+	}
+
+	newArr[size] = value;
+
+	size++;
+
+	delete[] arr;
+
+	arr = newArr;
+}
 
 int main(){
 
 	setlocale(LC_ALL, "ru");
 
-	int size = 10;
-	int *arr1=new int[size];
-	int *arr2 = new int[size];
+	int size = 5;
+	int addval;
+	int *arr = new int[size];
 
-	FillArr(arr1,size);
-	FillArr(arr2, size);
+	FillArr(arr, size);
 
-	cout << "1 array: ";
-	ShowArr(arr1, size);
-	cout << endl;
-	cout << "2 array: ";
-	ShowArr(arr2,size);
+	ShowArr(arr, size);
 
-	cout << endl;
+	cout << "Adding value: ";
+	cin >> addval;
+	
 
-	cout << "/////////////////////////////////////" << endl;
+	push_back(arr, size, addval);
 
-	arr1 = new int[size];
-	for (int i = 0; i < size; i++)
-	{
-		arr1[i] = arr2[i];
-	}
+	ShowArr(arr, size);
 
-	cout << "1 array: ";
-	ShowArr(arr1, size);
-	cout << endl;
-	cout << "2 array: ";
-	ShowArr(arr2, size);
-
-
-	delete[] arr1;
-	delete[] arr2;
+	delete[] arr;
 
 	return 0;
 }
