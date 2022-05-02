@@ -37,6 +37,22 @@ void push_back(int *& arr, int &size, const int value) {
 	arr = newArr;
 }
 
+void pop_back(int *&arr, int &size) {
+
+	size--;
+
+	int *newArr = new int[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		newArr[i] = arr[i];
+	}
+
+	delete[] arr;
+
+	arr = newArr;
+}
+
 int main(){
 
 	setlocale(LC_ALL, "ru");
@@ -54,6 +70,11 @@ int main(){
 	
 
 	push_back(arr, size, addval);
+
+	ShowArr(arr, size);
+
+
+	pop_back(arr, size);
 
 	ShowArr(arr, size);
 
