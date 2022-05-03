@@ -2,130 +2,120 @@
 
 using namespace std;
 
-void FillArr(int* const arr, const int size) {
-	
+void FillArr(int* const arr, int const size) {
+
 	for (int i = 0; i < size; i++)
 	{
-		arr[i] = rand() % 10;
+		arr[i] = rand() % 20;
 	}
 }
 
-void ShowArr(int* const arr, const int size) {
+void ShowArr(int* const arr, int const size) {
 
 	for (int i = 0; i < size; i++)
 	{
 		cout << arr[i] << "\t";
 	}
-	cout << endl;
+	cout << endl << endl;
 }
 
-void push_back(int *& arr, int &size, const int value) {
+void AddBack(int* &arr, int &size, int value) {
 
-	int *newArr = new int[size + 1];
+	int *NewArr = new int[size + 1];
+
+	for (int i = 0; i < size; i++)
+	{
+		NewArr[i] = arr[i];
+	}
+
+	NewArr[size] = value;
 	
+	size++;
+	
+	delete[] arr;
+	
+	arr=NewArr;
+}
+
+void AddHead(int*& arr, int& size, int value) {
+
+	int* NewArr = new int[size + 1];
+
 	for (int i = 0; i < size; i++)
 	{
-		newArr[i] = arr[i];
+		NewArr[i+1] = arr[i];
 	}
 
-	newArr[size] = value;
+	NewArr[0] = value;
 
 	size++;
 
 	delete[] arr;
 
-	arr = newArr;
+	arr=NewArr;
 }
 
-void pop_back(int *&arr, int &size) {
+void AddPlace(int*& arr, int& size, int place,  int value) {
 
-	size--;
-
-	int *newArr = new int[size];
+	int* NewArr = new int[size + 1];
 
 	for (int i = 0; i < size; i++)
 	{
-		newArr[i] = arr[i];
-	}
-
-	delete[] arr;
-
-	arr = newArr;
-}
-
-void push_ahead(int *&arr, int &size, const int value) {
-
-	int* newArr = new int[size + 1];
-
-	for (int i = 0; i < size; i++)
-	{
-		newArr[i+1] = arr[i];
-	}
-
-	newArr[0] = value;
-
-	size++;
-
-	delete[] arr;
-
-	arr = newArr;
-}
-
-void push_middle(int*& arr, int& size, const int value) {
-
-	int* newArr = new int[size + 1];
-
-	for (int i = 0; i < size; i++)
-	{
-		if (i < 5) {
-		
-			newArr[i] = arr[i];
+		if (i < place)
+		{
+			NewArr[i] = arr[i];
 		}
 
-		if (i >= 5) {
-			newArr[i+1] = arr[i];
+		if (i>=place)
+		{
+			NewArr[i + 1] = arr[i];
 		}
+
 	}
 
-	newArr[5] = value;
+	NewArr[place] = value;
 
 	size++;
 
 	delete[] arr;
 
-	arr = newArr;
+	arr=NewArr;
 }
 
 int main(){
 
 	setlocale(LC_ALL, "ru");
 
-	int size = 10;
-	int addback, addhead, addmiddle;
-	int *arr = new int[size];
+	int size = 0,addback,addhead,addplace,place;
+
+	cout << "Введите длину массива: ";
+	cin >> size;
+
+	int* arr = new int[size];
 
 	FillArr(arr, size);
 	ShowArr(arr, size);
 
-	cout << "Adding value back: ";
+	cout << "Введите значение, которое нужно добавить в конец массива: ";
 	cin >> addback;
 
-	push_back(arr, size, addback);
+	AddBack(arr, size, addback);
 	ShowArr(arr, size);
 
-	pop_back(arr, size);
-	ShowArr(arr, size);
-
-	cout << "Adding value ahead: ";
+	cout << "Введите значение, которое нужно добавить в начало массива: ";
 	cin >> addhead;
 
-	push_ahead(arr, size, addhead);
+	AddHead(arr, size, addhead);
 	ShowArr(arr, size);
 
-	cout << "Adding value middle (5-th element): ";
-	cin >> addmiddle;
+	cout << "Введите значение, которое нужно добавить в массив: ";
+	cin >> addplace;
+	cout << "Введите порядковый номер элемента, куда добавить элемент: ";
+	cin >> place;
 
-	push_middle(arr, size, addmiddle);
+	place--;
+
+	AddPlace(arr, size, place, addplace);
 	ShowArr(arr, size);
 
 	delete[] arr;
