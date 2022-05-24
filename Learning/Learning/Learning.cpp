@@ -1,4 +1,10 @@
-﻿#include <iostream>
+﻿#define _USE_MATH_DEFINES
+#define M_PI
+
+#include <iostream>
+#include <cmath>
+
+
 
 using namespace std;
 
@@ -6,36 +12,48 @@ int main(){
 
 	setlocale(LC_ALL, "ru");
 
-	char arr[29][59] = {};
+	double x, y, dx, dy;
 
-		for (int i = 0; i < 29; i++)
+	char arr[29][59];
+
+	dx = M_PI / 10;
+
+	for (int i = 0; i < 20; i++)
+	{
+		
+		y = sin(i*dx);
+
+		cout << y << " ";
+	}
+
+	cout << endl;
+
+	for (int i = 0; i < 29; i++)
+	{
+		for (int j = 0; j < 59; j++)
 		{
-			for (int j = 0; j < 59; j++)
-			{
-				arr[i][j] = ' ';
-			}
-		}
 
-		for (int i = 0; i < 14; i++)
+			arr[i][j] = ' ';
+		}
+	}
+
+	for (int i = 0; i < 29; i++)
+	{
+		for (int j = 0; j < 59; j++)
 		{
-			for (int j = 0; j < 59; j++)
-			{
-				if (sin(j)==i)
-				{
-					arr[i][j] = '*';
-				}
+			arr[14][j] = '*';
+			arr[i][0] = '*';
 
-			}
-		}
-
-		for (int i = 0; i < 29; i++)
-		{
-			for (int j = 0; j < 59; j++)
+			if (sin(j * dx) ==dy)
 			{
-				cout << arr[i][j] << " ";
+				arr[][j] = '*';
 			}
-			cout << endl;
+
+			cout << arr[i][j];
 		}
+		cout << endl;
+	}
+
 
 
 
