@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Learning.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Integrator.cpp">
+    <ClCompile Include="Integrator_new.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
