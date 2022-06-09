@@ -1,60 +1,59 @@
-﻿#define _USE_MATH_DEFINES
-#define M_PI
-
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 
-
-
 using namespace std;
+
+void memory(int& a) {
+
+	double* p = new double[a];
+};
+void fill(int& a, double* p) {
+
+	for (int i = 0; i < a; i++)
+	{
+		p[i] = rand() % 10;
+	}
+};
+void show(int& a, double* p) {
+
+	for (int i = 0; i < a; i++)
+	{
+		cout << p[i] << " ";
+	}
+};
+void del(double* p) {
+
+	delete[] p;
+};
 
 int main(){
 
 	setlocale(LC_ALL, "ru");
 
-	double x, y, dx, dy;
-
-	char arr[29][59];
-
-	dx = M_PI / 10;
-
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		
-		y = sin(i*dx);
+		int a = 0, Y = 0;
+		cout << "Введите размерность массива ";
+		cin >> a;
+		double* p = new double[a];
 
-		cout << y << " ";
-	}
+		memory(a);
+		fill(a, p);
+		show(a, p);
+		del(p);
 
-	cout << endl;
+		cout << endl << "Создадим новый массив? 1 or 0" << endl;;
+		cin >> Y;
 
-	for (int i = 0; i < 29; i++)
-	{
-		for (int j = 0; j < 59; j++)
+		if (Y)
 		{
+			continue;
+		}
+		else {
 
-			arr[i][j] = ' ';
+			break;
 		}
 	}
-
-	for (int i = 0; i < 29; i++)
-	{
-		for (int j = 0; j < 59; j++)
-		{
-			arr[14][j] = '*';
-			arr[i][0] = '*';
-
-			if (sin(j * dx) ==dy)
-			{
-				arr[][j] = '*';
-			}
-
-			cout << arr[i][j];
-		}
-		cout << endl;
-	}
-
-
 
 
 	return 0;
