@@ -3,58 +3,67 @@
 
 using namespace std;
 
-void memory(int& a) {
+void change(int a, int* p) {
 
-	double* p = new double[a];
-};
-void fill(int& a, double* p) {
+	for (int i = 0; i < a - 1; i++)
+	{
+		if (i % 2 == 0)
+		{
+			int b = p[i];
+			p[i] = p[i + 1];
+			p[i + 1] = b;
+		}
+		else {
 
-	for (int i = 0; i < a; i++)
+			continue;
+		}
+	}
+	cout << endl;
+}
+
+int main(){
+
+	setlocale(LC_ALL, "ru");
+	
+	int a = 0;
+
+	cout << "Введите длину массива ";
+	cin >> a;
+
+	// Giving data for array
+
+	int* p = new int[a];
+
+	// Filling array
+
+	for (int i = 0; i < 12; i++)
 	{
 		p[i] = rand() % 10;
 	}
-};
-void show(int& a, double* p) {
+
+	// Showing elements of array before changing
 
 	for (int i = 0; i < a; i++)
 	{
 		cout << p[i] << " ";
 	}
-};
-void del(double* p) {
+	cout << endl;
+
+	// Changing elements
+
+	change(a,p);
+
+	// Showing elements of array after changing
+
+	for (int i = 0; i < a; i++)
+	{
+		cout << p[i] << " ";
+	}
+	cout << endl;
+
+	// Deleting giving data
 
 	delete[] p;
-};
-
-int main(){
-
-	setlocale(LC_ALL, "ru");
-
-	for (int i = 0; i < 10; i++)
-	{
-		int a = 0, Y = 0;
-		cout << "Введите размерность массива ";
-		cin >> a;
-		double* p = new double[a];
-
-		memory(a);
-		fill(a, p);
-		show(a, p);
-		del(p);
-
-		cout << endl << "Создадим новый массив? 1 or 0" << endl;;
-		cin >> Y;
-
-		if (Y)
-		{
-			continue;
-		}
-		else {
-
-			break;
-		}
-	}
-
 
 	return 0;
 }
