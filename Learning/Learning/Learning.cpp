@@ -3,67 +3,62 @@
 
 using namespace std;
 
-void change(int a, int* p) {
+void filling(int rows, int cols, int **arr) {
 
-	for (int i = 0; i < a - 1; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		if (i % 2 == 0)
+		for (int j = 0; j < cols; j++)
 		{
-			int b = p[i];
-			p[i] = p[i + 1];
-			p[i + 1] = b;
-		}
-		else {
-
-			continue;
+			int a = rand() % 50;
+			if (a > 9)
+			{
+				arr[i][j] = a;
+			}
+			else
+			{
+				j--;
+			}
 		}
 	}
-	cout << endl;
+}
+void showing(int rows, int cols, int **arr) {
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
 
 int main(){
 
 	setlocale(LC_ALL, "ru");
 	
-	int a = 0;
+	int rows=6, cols=8;
+	cout << "Введите количество строк ";
+	cin >> rows;
+	cout << "Введите количество столбцов ";
+	cin >> cols;
 
-	cout << "Введите длину массива ";
-	cin >> a;
+	int** arr = new int*[rows];
 
-	// Giving data for array
-
-	int* p = new int[a];
-
-	// Filling array
-
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		p[i] = rand() % 10;
+		arr[i] = new int[cols];
 	}
 
-	// Showing elements of array before changing
+	filling(rows, cols, arr);
+	showing(rows, cols, arr);
 
-	for (int i = 0; i < a; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		cout << p[i] << " ";
+		delete[]arr[i];
 	}
-	cout << endl;
 
-	// Changing elements
-
-	change(a,p);
-
-	// Showing elements of array after changing
-
-	for (int i = 0; i < a; i++)
-	{
-		cout << p[i] << " ";
-	}
-	cout << endl;
-
-	// Deleting giving data
-
-	delete[] p;
+	delete[] arr;
 
 	return 0;
 }
