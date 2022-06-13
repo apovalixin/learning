@@ -3,25 +3,23 @@
 
 using namespace std;
 
-void filling(int rows, int cols, int **arr) {
+void filling(int **arr,int rows,int cols) {
 
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
 		{
-			int a = rand() % 50;
-			if (a > 9)
-			{
-				arr[i][j] = a;
-			}
-			else
+			arr[i][j] = rand() % 100;
+			if (arr[i][j]<10)
 			{
 				j--;
 			}
+		
 		}
 	}
 }
-void showing(int rows, int cols, int **arr) {
+
+void showing(int** arr, int rows, int cols) {
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -31,27 +29,53 @@ void showing(int rows, int cols, int **arr) {
 		}
 		cout << endl;
 	}
+	cout << endl;
+}
+
+void change(int** arr, int rows, int cols) {
+
+	for (int i = 0; i < rows; i++)
+	{
+		int max, x, y;
+		
+		for (int j = 0; j < cols; j++)
+		{
+			if (arr[i][j]>=arr[i][0])
+			{
+				max = arr[i][j];
+				x = i;
+				y = j;
+			}
+		}
+		arr[x][y] = arr[i][0];
+		arr[i][0] = max;
+	}
+
+
 }
 
 int main(){
 
 	setlocale(LC_ALL, "ru");
 	
-	int rows=6, cols=8;
-	cout << "Введите количество строк ";
-	cin >> rows;
-	cout << "Введите количество столбцов ";
-	cin >> cols;
+	int rows = 0, cols = 0;
+	cout << "Введите число строк "; cin >> rows;
+	cout << "Введите число столбцов "; cin >> cols;
+	cout << endl;
 
-	int** arr = new int*[rows];
-
+	int** arr = new int* [rows];
 	for (int i = 0; i < rows; i++)
 	{
 		arr[i] = new int[cols];
 	}
 
-	filling(rows, cols, arr);
-	showing(rows, cols, arr);
+	filling(arr, rows,cols);
+
+	showing(arr, rows, cols);
+
+	change(arr, rows, cols);
+
+	showing(arr, rows, cols);
 
 	for (int i = 0; i < rows; i++)
 	{
